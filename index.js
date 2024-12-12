@@ -30,6 +30,7 @@ let result = 0;
 function calculate(arr, operation) {
   console.log("calculating....");
   console.log(typeof arr[0]);
+  console.log("array : ", arr);
   if (arr.length == 0) return arr[0];
   for (let i = 0; i < arr.length; i++) {
     if (operation[i] == "+") {
@@ -39,31 +40,31 @@ function calculate(arr, operation) {
       i > 0 ? (arr[i] = result) : result;
       console.log("in process:", arr);
     }
-    //   if (operation[i] == "*") {
-    //     result = arr[i - 1] * arr[i];
-    //     arr = arr.shift();
-    //     i--;
-    //     i > 0 ? (arr[i] = result) : result;
-    //     console.log("in process:", arr);
-    //   }
-    //   if (operation[i] == "/") {
-    //     result = arr[i - 1] / arr[i];
-    //     arr = arr.shift();
-    //     i--;
-    //     i > 0 ? (arr[i] = result) : result;
-    //     console.log("in process:", arr);
-    //   }
+    if (operation[i] == "*") {
+      result = arr[i - 1] * arr[i];
+      arr = arr.shift();
+      i--;
+      i > 0 ? (arr[i] = result) : result;
+      console.log("in process:", arr);
+    }
+    if (operation[i] == "/") {
+      result = arr[i - 1] / arr[i];
+      arr = arr.shift();
+      i--;
+      i > 0 ? (arr[i] = result) : result;
+      console.log("in process:", arr);
+    }
 
-    //   if (operation[i] == "-") {
-    //     result = arr[i] - arr[i - 1];
-    //     arr = arr.shift();
-    //     i--;
-    //     i > 0 ? (arr[i] = result) : result;
-    //     console.log("in process:", arr);
-    //   }
-    //   // } else {
-    //   //   result = arr[0];
-    //   // }
+    if (operation[i] == "-") {
+      result = arr[i] - arr[i - 1];
+      arr = arr.shift();
+      i--;
+      i > 0 ? (arr[i] = result) : result;
+      console.log("in process:", arr);
+    }
+    // } else {
+    //   result = arr[0];
+    // }
     //
   }
   console.log("result: ", result);
@@ -132,19 +133,19 @@ function btnClick(e) {
     console.log(`added number ${parseFloat(screen.textContent)}`);
     clearScreen();
   } else if (e.target.textContent == "/") {
-    array.push(parseFloat(e.target.textContent));
+    array.push(parseFloat(screen.textContent));
     operations.push("/");
     console.log("added operation / ");
     console.log(`added number ${parseFloat(screen.textContent)}`);
     clearScreen();
   } else if (e.target.textContent == "*") {
-    array.push(parseFloat(e.target.textContent));
+    array.push(parseFloat(screen.textContent));
     operations.push("*");
     console.log("added operation * ");
     console.log(`added number ${parseFloat(screen.textContent)}`);
     clearScreen();
   } else if (e.target.textContent == "-") {
-    array.push(parseFloat(e.target.textContent));
+    array.push(parseFloat(screen.textContent));
     operations.push("-");
     console.log("added operation - ");
     console.log(`added number ${parseFloat(screen.textContent)}`);
