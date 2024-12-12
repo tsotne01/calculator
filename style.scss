@@ -31,6 +31,8 @@
   //text
   --main-text-color: hsl(221, 14%, 31%);
   --secondary-text-color: hsl(0, 0%, 100%);
+  --third-text-color: var(--secondary-text-color);
+  --header-text-color: var(--secondary-text-color);
 }
 
 .theme-2 {
@@ -52,6 +54,8 @@
   //text
   --main-text-color: hsl(60, 10%, 19%);
   --secondary-text-color: hsl(0, 0%, 100%);
+  --third-text-color: var(--secondary-text-color);
+  --header-text-color: hsl(60, 10%, 19%);
   // }
 }
 
@@ -74,6 +78,8 @@
   //text
   --main-text-color: hsl(52, 100%, 62%);
   --secondary-text-color: hsl(198, 20%, 13%);
+  --third-text-color: hsl(0, 0%, 100%);
+  --header-text-color: hsl(52, 100%, 62%);
   // }
 }
 
@@ -102,6 +108,7 @@
     display: flex;
     gap: var(--calculator-gap);
     flex-direction: column;
+
     // border: solid 1px black; // for debuging
     &-header {
       display: flex;
@@ -109,7 +116,7 @@
       height: var(--calculator-hd-height);
       align-items: center;
       // border: solid 1px black; // for debuging
-      color: var(--main-text-color);
+      color: var(--header-text-color);
       &-color-theme::before {
         content: "THEME";
         font-size: var(--var-theme-fs);
@@ -119,6 +126,11 @@
       height: var(--screen-height);
       background-color: var(--background-color-screen);
       border-radius: var(--screen-b-radius);
+      text-align: end;
+      font-size: var(--numbers-fs);
+      align-content: center;
+      color: var(--main-text-color);
+      overflow: hidden;
     }
     &-numbers-flex {
       display: flex;
@@ -129,6 +141,7 @@
       padding: 10px;
       background-color: var(--background-color-secondary);
       border-radius: 10px;
+      font-size: var(--numbers-fs);
 
       gap: 10px;
       div {
@@ -148,6 +161,9 @@
       div:last-child {
         :last-child {
           color: var(--secondary-text-color);
+        }
+        :first-child {
+          color: var(--third-text-color);
         }
       }
     }
@@ -174,10 +190,4 @@
     background-color: var(--key-toggle-bg-2);
     border-bottom: solid 3px var(--key-shadow-2);
   }
-}
-
-.theme-1,
-.theme-2,
-.theme-3 {
-  background-color: var();
 }
