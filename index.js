@@ -6,12 +6,8 @@ const radioBtns = document.querySelectorAll("input");
 
 for (let i = 0; i < radioBtns.length; i++) {
   radioBtns[i].addEventListener("click", (e) => {
-    console.log("removed class from body:");
-    console.log(body.classList.value);
     body.classList.remove(body.classList.value);
 
-    // console.log("set class to target id:");
-    // console.log(e.target.id);
     body.classList.add(e.target.id);
   });
 }
@@ -28,9 +24,6 @@ let operations = [""];
 let result = 0;
 
 function calculate(arr, operation) {
-  console.log("calculating....");
-  console.log(typeof arr[0]);
-  console.log("array : ", arr);
   if (arr.length == 0) return arr[0];
   for (let i = 0; i < arr.length; i++) {
     if (operation[i] == "+") {
@@ -38,36 +31,27 @@ function calculate(arr, operation) {
       arr = arr.shift();
       i--;
       i > 0 ? (arr[i] = result) : result;
-      console.log("in process:", arr);
     }
     if (operation[i] == "*") {
       result = arr[i - 1] * arr[i];
       arr = arr.shift();
       i--;
       i > 0 ? (arr[i] = result) : result;
-      console.log("in process:", arr);
     }
     if (operation[i] == "/") {
       result = arr[i - 1] / arr[i];
       arr = arr.shift();
       i--;
       i > 0 ? (arr[i] = result) : result;
-      console.log("in process:", arr);
     }
 
     if (operation[i] == "-") {
-      result = arr[i] - arr[i - 1];
+      result = arr[i - 1] - arr[i];
       arr = arr.shift();
       i--;
       i > 0 ? (arr[i] = result) : result;
-      console.log("in process:", arr);
     }
-    // } else {
-    //   result = arr[0];
-    // }
-    //
   }
-  console.log("result: ", result);
 
   return `${result}`;
 }
@@ -84,9 +68,7 @@ function deleteLast() {
   let arr = screen.textContent.split("");
   if (arr.length > 0) {
     screen.textContent = "";
-    console.log("splitted array : ", arr);
     arr.pop();
-    console.log(arr.concat());
     arr = arr.concat();
     for (let i = 0; i < arr.length; i++) {
       screen.textContent += arr[i];
@@ -119,36 +101,44 @@ function btnClick(e) {
   }
   if (e.target.textContent == "=") {
     array.push(parseFloat(screen.textContent));
+
     clearScreen();
     addToScreen(calculate(array, operations));
     array = [];
     operations = [""];
     result = 0;
-    console.log(array);
-    // clearScreen();
   } else if (e.target.textContent == "+") {
-    array.push(parseFloat(screen.textContent));
+    if (screen.textContent != "") {
+      array.push(parseFloat(screen.textContent));
+    }
+    if (operations.length > array.length && operations[0] == "")
+      operations.splice(-1, 1);
     operations.push("+");
-    console.log("added operation + ");
-    console.log(`added number ${parseFloat(screen.textContent)}`);
+
     clearScreen();
   } else if (e.target.textContent == "/") {
-    array.push(parseFloat(screen.textContent));
+    if (screen.textContent != "") {
+      array.push(parseFloat(screen.textContent));
+    }
+    if (operations.length > array.length && operations[0] == "")
+      operations.splice(-1, 1);
     operations.push("/");
-    console.log("added operation / ");
-    console.log(`added number ${parseFloat(screen.textContent)}`);
     clearScreen();
   } else if (e.target.textContent == "*") {
-    array.push(parseFloat(screen.textContent));
+    if (screen.textContent != "") {
+      array.push(parseFloat(screen.textContent));
+    }
+    if (operations.length > array.length && operations[0] == "")
+      operations.splice(-1, 1);
     operations.push("*");
-    console.log("added operation * ");
-    console.log(`added number ${parseFloat(screen.textContent)}`);
     clearScreen();
   } else if (e.target.textContent == "-") {
-    array.push(parseFloat(screen.textContent));
+    if (screen.textContent != "") {
+      array.push(parseFloat(screen.textContent));
+    }
+    if (operations.length > array.length && operations[0] == "")
+      operations.splice(-1, 1);
     operations.push("-");
-    console.log("added operation - ");
-    console.log(`added number ${parseFloat(screen.textContent)}`);
     clearScreen();
   }
 }
